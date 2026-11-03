@@ -2,1893 +2,509 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="color-scheme" content="dark">
-  <title>КАЛЕНДАРЬ TOFFA</title>
-  <!-- Подключение шрифта Montserrat -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOFFA — Главная страница</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: dark;
-      --bg-deep: #0b0514;
-      --bg-panel: #160c28;
-      --bg-card: #21123a;
-      --bg-card-hover: #2d194d;
-      --accent-purple: #9d4edd;
-      --accent-bright: #c77dff;
-      --accent-glow: rgba(157, 78, 221, 0.45);
-      --crimson-lily: #ff2a55;
-      --text-main: #f3e8ff;
-      --text-muted: #b59fd0;
-      --border-color: #38205c;
-      --money-green: #00f5d4;
-      --note-amber: #ffd166;
+      --bg-deep: #140D21;
+      --bg-panel: #261D44;
+      --bg-card-hover: #322659;
+      --accent-mid: #433E76;
+      --accent-light: #A79FEC;
+      --accent-red: #e62e4d;
+      --text-main: #FBFCFD;
+      --text-muted: #c5bfe0;
+      --border-color: rgba(167, 159, 236, 0.22);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 700;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
-      background-color: var(--bg-deep);
-      color: var(--text-main);
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-deep);
       background-image: 
-        radial-gradient(circle at 15% 10%, rgba(123, 44, 191, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(255, 42, 85, 0.12) 0%, transparent 45%);
-      min-height: 100vh;
-      padding: 14px 10px 48px;
+        radial-gradient(circle at 15% 10%, rgba(67, 62, 118, 0.35), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(230, 46, 77, 0.12), transparent 45%);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
 
-    .container {
-      width: 100%;
-      max-width: 960px;
+    /* Навигация */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(20, 13, 33, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1140px;
       margin: 0 auto;
+      padding: 16px 20px;
       display: flex;
-      flex-direction: column;
-      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
-    /* Шапка приложения */
-    .hero-header {
-      background: linear-gradient(135deg, #1d0e38 0%, #120724 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
-      width: 100%;
-    }
-
-    .hero-title-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-title-block h1 {
-      font-size: 1.55rem;
+    .logo {
+      font-size: 1.35rem;
       font-weight: 900;
-      letter-spacing: 0.8px;
-      color: #e0aaff;
-      text-shadow: 0 0 16px rgba(199, 125, 255, 0.45);
-      text-transform: uppercase;
-    }
-
-    .hero-title-block p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    /* Панель управления датами и режимом */
-    .controls-panel {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      width: 100%;
-    }
-
-    .top-Controls-Row {
+      letter-spacing: 1.5px;
+      color: var(--text-main);
+      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 8px;
-      width: 100%;
-      justify-content: space-between;
     }
 
-    .nav-group {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 4px;
-      width: 100%;
-    }
-
-    .btn-icon {
-      background: transparent;
-      color: var(--text-main);
-      border: none;
-      width: 38px;
-      height: 36px;
-      border-radius: 10px;
-      cursor: pointer;
+    .logo span {
+      color: var(--accent-light);
+      font-weight: 600;
       font-size: 1rem;
-      font-weight: 800;
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .btn-icon:active {
-      background: var(--bg-card-hover);
-      color: var(--accent-bright);
-    }
-
-    .current-period-label {
-      flex: 1;
-      text-align: center;
-      font-weight: 800;
-      font-size: 0.92rem;
-      color: var(--text-main);
-      padding: 0 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .view-toggle {
-      display: flex;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 3px;
-      flex: 1;
-    }
-
-    .toggle-btn {
-      flex: 1;
-      background: transparent;
-      color: var(--text-muted);
-      border: none;
-      padding: 8px 10px;
-      border-radius: 9px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .toggle-btn.active {
-      background: var(--accent-purple);
-      color: #f3e8ff;
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    .btn-today {
-      background: rgba(157, 78, 221, 0.2);
-      border: 1px solid var(--accent-purple);
-      color: #e0aaff;
-      padding: 9px 14px;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .btn-today:active {
-      background: var(--accent-purple);
-      color: #f3e8ff;
-    }
-
-    /* Секции календарей */
-    .calendar-section {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 16px 10px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .section-header {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 14px;
-      padding: 0 4px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .badge-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-bright);
-      box-shadow: 0 0 8px var(--accent-bright);
-      flex-shrink: 0;
-    }
-
-    /* Динамическая легенда шаблонов */
-    .legend {
-      display: flex;
+      gap: 22px;
+      list-style: none;
       flex-wrap: wrap;
-      gap: 6px;
     }
 
-    .legend-item {
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-light);
+    }
+
+    /* Выпадающее меню для подразделов */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      background: var(--bg-deep);
-      padding: 4px 8px;
-      border-radius: 99px;
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
     }
 
-    .legend-color {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* Сетка календаря — строго 7 равных колонок */
-    .weekdays-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 4px;
-      margin-bottom: 6px;
-      width: 100%;
-    }
-
-    .weekday-name {
-      text-align: center;
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      padding: 2px 0;
-    }
-
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 4px;
-      width: 100%;
-    }
-
-    .day-cell {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      min-height: 82px;
-      padding: 5px 4px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      position: relative;
-      user-select: none;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .day-cell:active {
-      border-color: var(--accent-bright);
-      background: var(--bg-card-hover);
-    }
-
-    .day-cell.other-month {
-      opacity: 0.35;
-    }
-
-    .day-cell.is-today {
-      border: 2px solid var(--crimson-lily);
-      box-shadow: inset 0 0 10px rgba(255, 42, 85, 0.25);
-    }
-
-    .day-cell.future-muted .money-amount {
-      color: #a992c4;
-      opacity: 0.55;
-    }
-
-    .day-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2px;
-      width: 100%;
-    }
-
-    .day-number {
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--text-main);
-      width: 21px;
-      height: 21px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-
-    .day-cell.is-today .day-number {
-      background: var(--crimson-lily);
-      color: #f3e8ff;
-    }
-
-    .today-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--crimson-lily);
-      box-shadow: 0 0 6px var(--crimson-lily);
-      flex-shrink: 0;
-    }
-
-    /* Плашки смен внутри ячейки */
-    .shift-pill {
-      margin-top: 3px;
-      padding: 3px 3px;
-      border-radius: 5px;
-      font-size: 0.56rem;
-      font-weight: 800;
-      line-height: 1.15;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      border-left: 2.5px solid transparent;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .shift-pill span {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .shift-time {
-      font-size: 0.51rem;
-      opacity: 0.9;
-      font-weight: 700;
-    }
-
-    /* Бейдж заметки на день */
-    .day-note-badge {
-      margin-top: 2px;
-      padding: 2px 3px;
-      border-radius: 4px;
-      background: rgba(255, 209, 102, 0.14);
-      border: 1px solid rgba(255, 209, 102, 0.35);
-      color: var(--note-amber);
-      font-size: 0.5rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-      line-height: 1.15;
-    }
-
-    .empty-hint {
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: rgba(181, 159, 208, 0.35);
-      margin-top: auto;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Отображение денег во втором календаре */
-    .money-display {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .money-amount {
-      font-size: 0.66rem;
-      font-weight: 800;
-      color: var(--money-green);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .money-amount.zero {
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.62rem;
-      opacity: 0.5;
-    }
-
-    .money-source-tag {
-      font-size: 0.52rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .money-source-tag span.bonus {
-      color: #ffd166;
-      font-weight: 800;
-    }
-
-    /* Панель фильтра заработка */
-    .earnings-filter-bar {
-      margin-top: 16px;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .filter-label-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .filter-label-row span.active-mode-hint {
-      color: var(--money-green);
-      font-weight: 800;
-    }
-
-    /* Итоги заработка снизу */
-    .summary-bar {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
-
-    .summary-card {
-      background: linear-gradient(135deg, rgba(45, 25, 77, 0.85), rgba(22, 12, 40, 0.95));
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .summary-card.highlight {
-      border-color: var(--accent-purple);
-      box-shadow: 0 0 16px rgba(157, 78, 221, 0.2);
-    }
-
-    .summary-label {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .summary-value {
-      font-size: 1.45rem;
-      font-weight: 900;
-      color: var(--text-main);
-    }
-
-    .summary-value.green {
-      color: var(--money-green);
-    }
-
-    .summary-sub {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    /* Модальные окна */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(6, 2, 12, 0.84);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 12px;
-    }
-
-    .modal-backdrop.active {
-      display: flex;
-    }
-
-    .modal {
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 10px;
       background: var(--bg-panel);
-      border: 1px solid var(--accent-purple);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 440px;
-      padding: 18px 15px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-      max-height: 92vh;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .close-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      font-weight: 800;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0 4px;
-    }
-
-    .sub-block {
-      background: var(--bg-deep);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .sub-block-title {
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: #e0aaff;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .options-list {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .template-row {
-      display: flex;
-      gap: 6px;
-      align-items: stretch;
-    }
-
-    .option-btn {
-      flex: 1;
-      background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 10px 12px;
-      color: var(--text-main);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      text-align: left;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .option-btn:active {
-      border-color: var(--accent-bright);
-      background: var(--bg-card-hover);
-    }
-
-    .option-info {
-      display: flex;
+      padding: 10px 0;
+      min-width: 220px;
+      display: none;
       flex-direction: column;
-      gap: 2px;
-      min-width: 0;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
     }
 
-    .option-title {
-      font-weight: 800;
-      font-size: 0.82rem;
-      color: var(--text-main);
+    .dropdown:hover .dropdown-menu {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
-    .option-sub {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .option-price {
-      font-weight: 800;
-      font-size: 0.78rem;
-      color: #e0aaff;
-      background: rgba(157, 78, 221, 0.2);
-      padding: 5px 8px;
-      border-radius: 8px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .btn-del-template {
-      background: rgba(255, 42, 85, 0.14);
-      border: 1px solid rgba(255, 42, 85, 0.35);
-      color: #ff6b8b;
-      border-radius: 12px;
-      width: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      width: 100%;
-    }
-
-    .input-col {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .field-label {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .input-field {
-      width: 100%;
-      min-width: 0;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 9px 10px;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      outline: none;
-    }
-
-    .input-field:focus {
-      border-color: var(--accent-bright);
-    }
-
-    .color-picker-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .color-swatch {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.15s;
-    }
-
-    .color-swatch.selected {
-      border-color: #ffffff;
-      transform: scale(1.15);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    .calc-preview-bar {
-      background: rgba(157, 78, 221, 0.14);
-      border: 1px dashed var(--accent-purple);
-      border-radius: 10px;
-      padding: 8px 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.76rem;
-    }
-
-    .calc-preview-bar .sum {
-      color: var(--money-green);
-      font-weight: 900;
+    .dropdown-menu a {
+      padding: 10px 18px;
       font-size: 0.9rem;
     }
 
-    .btn-primary {
-      background: var(--accent-purple);
-      color: #f3e8ff;
-      border: none;
-      padding: 10px 14px;
+    .dropdown-menu a:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, var(--accent-mid), #5e54a4);
+      color: var(--text-main) !important;
+      padding: 9px 20px;
       border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.8rem;
-      cursor: pointer;
-      white-space: nowrap;
+      font-weight: 700 !important;
+      border: 1px solid var(--accent-light);
+      box-shadow: 0 4px 15px rgba(167, 159, 236, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(167, 159, 236, 0.4);
+    }
+
+    /* Hero Секция */
+    .hero {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 90px 20px 70px;
       text-align: center;
     }
 
-    .btn-primary:active {
-      opacity: 0.9;
-    }
-
-    .btn-outline-add {
-      background: rgba(157, 78, 221, 0.15);
-      border: 1px dashed var(--accent-bright);
-      color: #e0aaff;
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 0.78rem;
-      cursor: pointer;
-      width: 100%;
-      text-align: center;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 42, 85, 0.16);
-      color: #ff6b8b;
-      border: 1px solid rgba(255, 42, 85, 0.4);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.78rem;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    /* Секция редактирования денег в модалке */
-    .money-modal-block {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .current-balance-card {
-      background: var(--bg-deep);
+    .hero-badge {
+      display: inline-block;
+      background: rgba(67, 62, 118, 0.45);
       border: 1px solid var(--border-color);
-      padding: 12px;
-      border-radius: 12px;
-      text-align: center;
+      color: var(--accent-light);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
-    .current-balance-card .lbl {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .current-balance-card .val {
-      font-size: 1.6rem;
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
       font-weight: 900;
-      color: var(--money-green);
-      margin-top: 4px;
+      letter-spacing: 4px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      background: linear-gradient(90deg, #FBFCFD, #A79FEC, #e62e4d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 35px rgba(167, 159, 236, 0.15);
     }
 
-    .action-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .action-group label {
-      font-size: 0.76rem;
-      color: var(--text-muted);
+    .hero-roles {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
       font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
     }
 
-    .quick-chips {
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
       display: flex;
-      gap: 6px;
+      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    .chip-btn {
-      flex: 1;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: #e0aaff;
-      padding: 7px 8px;
-      border-radius: 8px;
-      font-size: 0.74rem;
-      font-weight: 800;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 30px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
       cursor: pointer;
-      text-align: center;
-      white-space: nowrap;
     }
 
-    @media (min-width: 640px) {
-      body {
-        padding: 24px 16px 60px;
+    .btn-primary {
+      background: linear-gradient(135deg, #6b5ce7, #8b78e6);
+      color: var(--text-main);
+      box-shadow: 0 8px 25px rgba(107, 92, 231, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(107, 92, 231, 0.6);
+    }
+
+    .btn-outline {
+      background: rgba(38, 29, 68, 0.6);
+      color: var(--accent-light);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-panel);
+      color: var(--text-main);
+      border-color: var(--accent-light);
+    }
+
+    /* Секции */
+    section {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent-light);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    /* О Тоффе */
+    .about-card {
+      background: linear-gradient(160deg, rgba(38, 29, 68, 0.85), rgba(20, 13, 33, 0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      padding: 36px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+      margin-bottom: 30px;
+    }
+
+    .about-card p {
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      text-indent: 1.5em;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Две карточки фактов */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .highlight-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .highlight-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-light);
+    }
+
+    .highlight-box.secret {
+      border-color: rgba(230, 46, 77, 0.4);
+      background: linear-gradient(145deg, rgba(38, 29, 68, 0.9), rgba(60, 18, 38, 0.6));
+    }
+
+    .highlight-box h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* Отзывы / Галерея */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .review-item {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .review-item:hover {
+      transform: scale(1.02);
+      border-color: var(--accent-light);
+    }
+
+    .review-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-placeholder {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Футер */
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--border-color);
+      background: rgba(14, 9, 24, 0.95);
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .footer-quote {
+      max-width: 540px;
+      margin: 0 auto 30px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .scroll-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-light);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-panel);
+      transition: all 0.2s ease;
+    }
+
+    .scroll-top:hover {
+      background: var(--accent-mid);
+      color: var(--text-main);
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      .calendar-section {
-        padding: 22px 20px;
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        margin-top: 6px;
+        width: 100%;
       }
-      .weekdays-grid, .days-grid {
-        gap: 8px;
-      }
-      .day-cell {
-        min-height: 104px;
-        padding: 8px;
-        border-radius: 14px;
-      }
-      .shift-pill {
-        font-size: 0.7rem;
-        padding: 5px 6px;
-      }
-      .shift-time {
-        font-size: 0.62rem;
-      }
-      .day-note-badge {
-        font-size: 0.62rem;
-        padding: 3px 5px;
-      }
-      .money-amount {
-        font-size: 0.92rem;
-      }
-      .money-source-tag {
-        font-size: 0.64rem;
+      .about-card {
+        padding: 24px 20px;
       }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
-<div class="container">
-  <!-- ШАПКА ПРИЛОЖЕНИЯ -->
-  <header class="hero-header">
-    <div class="hero-title-block">
-      <h1>КАЛЕНДАРЬ TOFFA</h1>
-      <p>Универсальный планировщик рабочих смен, заметок и дохода</p>
-    </div>
-
-    <!-- Навигация по датам и переключатель Неделя / Месяц -->
-    <div class="controls-panel">
-      <div class="nav-group">
-        <button class="btn-icon" id="btnPrev" title="Назад">&#10094;</button>
-        <div class="current-period-label" id="periodLabel">Октябрь 2026</div>
-        <button class="btn-icon" id="btnNext" title="Вперёд">&#10095;</button>
-      </div>
-
-      <div class="top-Controls-Row">
-        <button class="btn-today" id="btnToday">Сегодня</button>
-        <div class="view-toggle">
-          <button class="toggle-btn active" id="btnMonthView">На месяц</button>
-          <button class="toggle-btn" id="btnWeekView">На неделю</button>
-        </div>
-      </div>
+  <!-- Шапка с меню и подразделами -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">TOFFA <span>/ ТОФФА</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Главная о Тоффе</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">Разделы ▾</a>
+          <div class="dropdown-menu">
+            <a href="disclaimer.html">Дисклеймер</a>
+            <a href="author.html">Информация об Авторе</a>
+            <a href="mascot.html">Маскот</a>
+          </div>
+        </li>
+        <li><a href="donate.html">Донат</a></li>
+        <li><a href="links.html" class="nav-btn">Ссылки</a></li>
+      </ul>
     </div>
   </header>
 
-  <!-- КАЛЕНДАРЬ №1: ГРАФИК РАБОТЫ И ВЫХОДНЫХ -->
-  <section class="calendar-section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="badge-dot"></span>
-        <span>1. График работы и заметки</span>
-      </div>
-      <!-- Динамическая легенда шаблонов пользователя -->
-      <div class="legend" id="scheduleLegend"></div>
-    </div>
-
-    <div class="weekdays-grid">
-      <div class="weekday-name">Пн</div>
-      <div class="weekday-name">Вт</div>
-      <div class="weekday-name">Ср</div>
-      <div class="weekday-name">Чт</div>
-      <div class="weekday-name">Пт</div>
-      <div class="weekday-name">Сб</div>
-      <div class="weekday-name">Вс</div>
-    </div>
-    <div class="days-grid" id="scheduleGrid"></div>
-  </section>
-
-  <!-- КАЛЕНДАРЬ №2: УЧЁТ ЗАРАБОТАННЫХ ДЕНЕГ -->
-  <section class="calendar-section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="badge-dot" style="background: var(--money-green); box-shadow: 0 0 8px var(--money-green);"></span>
-        <span>2. Календарь заработанных денег</span>
-      </div>
-      <div style="font-size: 0.74rem; color: var(--text-muted);">
-        Заработок рассчитывается из выбранной смены автоматически • Нажми на день для добавления чаевых, бонусов или редактирования
+  <!-- Главный экран -->
+  <main>
+    <div class="hero">
+      <span class="hero-badge">Официальная страница</span>
+      <h1>TOFFA</h1>
+      <p class="hero-roles">• Блогер • Контент мейкер • Вокалист</p>
+      <p class="hero-subtitle">гармония талантов в одном человеке.</p>
+      <div class="hero-buttons">
+        <a href="https://t.me/TOFFA_TGK" target="_blank" rel="noopener" class="btn btn-primary">Telegram</a>
+        <a href="#about" class="btn btn-outline">Узнать подробности</a>
       </div>
     </div>
 
-    <div class="weekdays-grid">
-      <div class="weekday-name">Пн</div>
-      <div class="weekday-name">Вт</div>
-      <div class="weekday-name">Ср</div>
-      <div class="weekday-name">Чт</div>
-      <div class="weekday-name">Пт</div>
-      <div class="weekday-name">Сб</div>
-      <div class="weekday-name">Вс</div>
-    </div>
-    <div class="days-grid" id="moneyGrid"></div>
-
-    <!-- ФИЛЬТР РАСЧЁТА СУММЫ: ДО СЕГОДНЯ ИЛИ ВЕСЬ ПЛАН -->
-    <div class="earnings-filter-bar">
-      <div class="filter-label-row">
-        <span>Режим подсчёта кассы:</span>
-        <span class="active-mode-hint" id="filterStatusHint">Только заработанное по сегодня</span>
-      </div>
-      <div class="view-toggle">
-        <button class="toggle-btn active" id="btnFilterUpToToday">По сегодня (факт)</button>
-        <button class="toggle-btn" id="btnFilterAllMonth">Весь план (с будущими)</button>
-      </div>
-    </div>
-
-    <!-- ИТОГИ ЗА МЕСЯЦ И ЗА НЕДЕЛЮ -->
-    <div class="summary-bar">
-      <div class="summary-card highlight">
-        <span class="summary-label" id="monthSummaryLabel">Заработано за месяц (по сегодня)</span>
-        <span class="summary-value green" id="monthTotalValue">0 ₽</span>
-        <span class="summary-sub" id="monthShiftsCount">Отработано смен: 0</span>
-      </div>
-      <div class="summary-card">
-        <span class="summary-label" id="weekSummaryLabel">Заработано за неделю (по сегодня)</span>
-        <span class="summary-value" id="weekTotalValue">0 ₽</span>
-        <span class="summary-sub" id="weekShiftsCount">Отработано на неделе: 0</span>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- МОДАЛЬНОЕ ОКНО ДНЯ: ВЫБОР ШАБЛОНА, СОЗДАНИЕ ШАБЛОНА, ПРАВКА СМЕНЫ И ЗАМЕТКА -->
-<div class="modal-backdrop" id="shiftModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title" id="shiftModalTitle">Настройка дня</div>
-      <button class="close-btn" onclick="closeShiftModal()">&times;</button>
-    </div>
-
-    <!-- 1. ЗАМЕТКА НА ДЕНЬ -->
-    <div class="sub-block">
-      <div class="sub-block-title">
-        <span>📝 Заметка / подпись дня</span>
-      </div>
-      <div class="input-row">
-        <input type="text" id="dayNoteInput" class="input-field" placeholder="Напр.: Медосмотр, Зарплата, Замена..." maxlength="40">
-        <button class="btn-primary" onclick="saveOnlyNote()">Сохранить</button>
-      </div>
-    </div>
-
-    <!-- 2. РЕДАКТИРОВАНИЕ ТЕКУЩЕЙ ПОСТАВЛЕННОЙ СМЕНЫ (показывается, если на день уже назначена рабочая смена) -->
-    <div class="sub-block" id="editCurrentShiftBlock" style="display: none;">
-      <div class="sub-block-title">
-        <span>✏️ Текущая смена дня (можно поправить)</span>
-      </div>
-      <div class="input-col">
-        <span class="field-label">Должность / кем работаешь:</span>
-        <input type="text" id="editRoleInput" class="input-field" placeholder="Должность">
-      </div>
-      <div class="input-row">
-        <div class="input-col">
-          <span class="field-label">Часы (интервал):</span>
-          <input type="text" id="editTimeLabelInput" class="input-field" placeholder="10:00–22:00">
-        </div>
-        <div class="input-col">
-          <span class="field-label">Кол-во часов:</span>
-          <input type="number" id="editHoursInput" class="input-field" step="0.5" min="0" placeholder="12">
-        </div>
-        <div class="input-col">
-          <span class="field-label">Ставка ₽/час:</span>
-          <input type="number" id="editRateInput" class="input-field" step="10" min="0" placeholder="250">
-        </div>
-      </div>
-      <div class="calc-preview-bar">
-        <span>Пересчёт смены:</span>
-        <span class="sum" id="editShiftPreviewSum">0 ₽</span>
-      </div>
-      <button class="btn-primary" onclick="saveEditedDayShift()">Сохранить изменения смены</button>
-    </div>
-
-    <!-- 3. СПИСОК ШАБЛОНОВ СМЕН -->
-    <div class="sub-block">
-      <div class="sub-block-title">
-        <span>📋 Выбрать статус или шаблон смены</span>
-      </div>
-      <div class="options-list" id="templatesListContainer"></div>
-
-      <button class="btn-outline-add" id="btnToggleNewTemplate" onclick="toggleNewTemplateForm()">
-        + Создать новый шаблон смены
-      </button>
-
-      <!-- Форма добавления нового шаблона в список -->
-      <div id="newTemplateForm" style="display: none; flex-direction: column; gap: 10px; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--border-color);">
-        <div class="sub-block-title" style="color: var(--money-green);">
-          <span>✨ Новый шаблон дня</span>
-        </div>
-
-        <div class="input-col">
-          <span class="field-label">Должность (кем работаешь):</span>
-          <input type="text" id="tplRoleInput" class="input-field" placeholder="Напр.: Бариста, Курьер, Менеджер...">
-        </div>
-
-        <div class="input-row">
-          <div class="input-col">
-            <span class="field-label">Начало (по желанию):</span>
-            <input type="time" id="tplStartInput" class="input-field">
-          </div>
-          <div class="input-col">
-            <span class="field-label">Конец (по желанию):</span>
-            <input type="time" id="tplEndInput" class="input-field">
-          </div>
-        </div>
-
-        <div class="input-row">
-          <div class="input-col">
-            <span class="field-label">Часов работы:</span>
-            <input type="number" id="tplHoursInput" class="input-field" placeholder="Напр. 12" step="0.5" min="0.5" max="24" value="8">
-          </div>
-          <div class="input-col">
-            <span class="field-label">Заработок в час (₽):</span>
-            <input type="number" id="tplRateInput" class="input-field" placeholder="Напр. 250" step="10" min="0" value="250">
-          </div>
-        </div>
-
-        <div class="input-col">
-          <span class="field-label">Цвет карточки в календаре:</span>
-          <div class="color-picker-row" id="tplColorPicker"></div>
-        </div>
-
-        <div class="calc-preview-bar">
-          <span id="tplCalcDetails">8 ч. × 250 ₽/ч</span>
-          <span class="sum" id="tplCalcTotal">2 000 ₽</span>
-        </div>
-
-        <button class="btn-primary" onclick="createAndApplyTemplate()">Сохранить в список и поставить на день</button>
-      </div>
-    </div>
-
-    <button class="btn-secondary" onclick="clearShiftDay()">Очистить день полностью</button>
-  </div>
-</div>
-
-<!-- МОДАЛЬНОЕ ОКНО РЕДАКТИРОВАНИЯ ДОХОДА (КАЛЕНДАРЬ 2) -->
-<div class="modal-backdrop" id="moneyModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title" id="moneyModalTitle">Доход за день</div>
-      <button class="close-btn" onclick="closeMoneyModal()">&times;</button>
-    </div>
-
-    <div class="money-modal-block">
-      <div class="current-balance-card">
-        <div class="lbl" id="moneyModalShiftInfo">Текущая сумма дня</div>
-        <div class="val" id="moneyModalCurrentVal">0 ₽</div>
+    <!-- Биография -->
+    <section id="about">
+      <span class="section-label">О ТОФФЕ</span>
+      <h2 class="section-title">Контент мейкер</h2>
+      
+      <div class="about-card">
+        <p>С самого детства меня привлекала сцена и общение с людьми. Ещё в школьные годы активно участвовал в вокальных конкурсах и выступал на праздничных концертах, что заложило прочный фундамент для дальнейшей творческой деятельности.</p>
+        <p>После школы, работая культорганизатором, смог начать реализовывать свой потенциал, раскрыв свои таланты, принимал участие в организации и проведении областных мероприятий, а также в многочисленных концертных программах в качестве: видеооператора, звукорежиссёра, актёра, вокалиста, дизайнера, типографа.</p>
+        <p>С детства проявлял тягу к ведению социальных сетей, пению и публичным выступлениям, а так же к видеомонтажу, дизайну и анимации.</p>
+        <p>Обладаю повышенной общительностью, легко нахожу общий язык с людьми любого возраста и социального статуса. Стремлюсь к постоянному развитию и совершенствованию своих профессиональных навыков в сферах: вокала, монтажа, фотографии, и произведения иного контента.</p>
       </div>
 
-      <!-- Функция: Добавить к текущей сумме -->
-      <div class="action-group">
-        <label>➕ Добавить к текущей сумме (чаевые / бонус / премия):</label>
-        <div class="input-row">
-          <input type="number" id="addMoneyInput" class="input-field" placeholder="Сумма, ₽" step="50">
-          <button class="btn-primary" onclick="addMoneyToDay()">+ Добавить</button>
+      <!-- Карточки-акценты -->
+      <div class="highlights-grid">
+        <div class="highlight-box">
+          <span class="section-label">О ТОФФЕ</span>
+          <h3>Всегда найдёт творческий подход и сделает итоговый результат максимально качественным</h3>
         </div>
-        <div class="quick-chips">
-          <button class="chip-btn" onclick="quickAddMoney(200)">+200₽</button>
-          <button class="chip-btn" onclick="quickAddMoney(500)">+500₽</button>
-          <button class="chip-btn" onclick="quickAddMoney(1000)">+1000₽</button>
-          <button class="chip-btn" onclick="quickAddMoney(1500)">+1500₽</button>
+        <div class="highlight-box secret">
+          <span class="section-label" style="color: #ff6b8b;">О ТОФФЕ</span>
+          <h3>Имеет секрет, за который его многие возненавидят</h3>
         </div>
       </div>
+    </section>
 
-      <hr style="border:none; border-top:1px solid var(--border-color);">
-
-      <!-- Функция: Задать точную сумму вручную -->
-      <div class="action-group">
-        <label>✏️ Изменить общую сумму дня вручную:</label>
-        <div class="input-row">
-          <input type="number" id="setMoneyInput" class="input-field" placeholder="Новая сумма, ₽" step="100">
-          <button class="btn-primary" onclick="setExactMoneyForDay()">Сохранить</button>
-        </div>
+    <!-- Отзывы -->
+    <section id="reviews">
+      <span class="section-label">Галерея</span>
+      <h2 class="section-title">Отзывы о Тоффе</h2>
+      <div class="reviews-grid">
+        <!-- Замени src="" на названия своих картинок в репозитории, например review1.jpg -->
+        <div class="review-item"><span class="review-placeholder">Отзыв 1 (загрузи review1.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 2 (загрузи review2.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 3 (загрузи review3.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 4 (загрузи review4.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 5 (загрузи review5.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 6 (загрузи review6.jpg)</span></div>
+        <div class="review-item"><span class="review-placeholder">Отзыв 7 (загрузи review7.jpg)</span></div>
       </div>
-
-      <button class="btn-secondary" onclick="resetMoneyToShiftBase()">Сбросить к расчётной ставке смены</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  const PALETTE_COLORS = [
-    '#9d4edd', // Неоновый фиолетовый
-    '#c77dff', // Светлый пурпурный
-    '#ff2a55', // Алый ликорис
-    '#f72585', // Розовый неон
-    '#4cc9f0', // Голубой неон
-    '#00f5d4', // Мятный
-    '#ff9e00'  // Янтарный
-  ];
-
-  const MONTHS_RU = [
-    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
-  ];
-
-  const today = new Date();
-  let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  let viewMode = 'month';
-  let earningsFilter = 'upToToday'; // 'upToToday' | 'all'
-  let activeDateKey = null;
-  let selectedTemplateColor = PALETTE_COLORS[0];
-
-  // Загружаем пользовательские шаблоны смен (изначально пустой массив — в списке только Выходной)
-  let customTemplates = JSON.parse(localStorage.getItem('toffa_universal_templates_v1') || '[]');
-  // Загружаем данные дней календаря
-  let calendarData = JSON.parse(localStorage.getItem('toffa_universal_days_v1') || '{}');
-
-  function saveTemplates() {
-    localStorage.setItem('toffa_universal_templates_v1', JSON.stringify(customTemplates));
-  }
-
-  function saveCalendarData() {
-    localStorage.setItem('toffa_universal_days_v1', JSON.stringify(calendarData));
-  }
-
-  function formatDateKey(date) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const d = String(date.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
-  }
-
-  function formatCurrency(val) {
-    return Math.round(Number(val || 0)).toLocaleString('ru-RU') + '₽';
-  }
-
-  function hexToRgba(hex, alpha) {
-    const clean = hex.replace('#', '');
-    const r = parseInt(clean.substring(0, 2), 16) || 157;
-    const g = parseInt(clean.substring(2, 4), 16) || 78;
-    const b = parseInt(clean.substring(4, 6), 16) || 221;
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-
-  function getDayEarnings(dateKey) {
-    const entry = calendarData[dateKey];
-    if (!entry) return 0;
-    const base = entry.manualPay !== undefined && entry.manualPay !== null
-      ? Number(entry.manualPay)
-      : Number(entry.basePay || 0);
-    const added = Number(entry.addedPay || 0);
-    return Math.round(base + added);
-  }
-
-  function getStartOfWeek(date) {
-    const d = new Date(date);
-    const day = d.getDay();
-    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-    return new Date(d.setDate(diff));
-  }
-
-  function getVisibleDays() {
-    const days = [];
-    if (viewMode === 'week') {
-      const start = getStartOfWeek(currentDate);
-      for (let i = 0; i < 7; i++) {
-        const d = new Date(start);
-        d.setDate(start.getDate() + i);
-        days.push({ date: d, isCurrentMonth: d.getMonth() === currentDate.getMonth() });
-      }
-    } else {
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-      const firstDayOfMonth = new Date(year, month, 1);
-      const startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      for (let i = startDayOfWeek - 1; i >= 0; i--) {
-        const d = new Date(year, month, -i);
-        days.push({ date: d, isCurrentMonth: false });
-      }
-      for (let i = 1; i <= daysInMonth; i++) {
-        const d = new Date(year, month, i);
-        days.push({ date: d, isCurrentMonth: true });
-      }
-      const remainder = days.length % 7;
-      if (remainder !== 0) {
-        const needed = 7 - remainder;
-        for (let i = 1; i <= needed; i++) {
-          const d = new Date(year, month + 1, i);
-          days.push({ date: d, isCurrentMonth: false });
-        }
-      }
-    }
-    return days;
-  }
-
-  // Отрисовка легенды над первым календарём
-  function renderLegend() {
-    const legendEl = document.getElementById('scheduleLegend');
-    let html = `<div class="legend-item"><span class="legend-color" style="background:#8467ad"></span>Выходной (0₽)</div>`;
-    customTemplates.forEach(t => {
-      const total = Math.round(t.hours * t.hourlyRate);
-      html += `<div class="legend-item"><span class="legend-color" style="background:${t.color}"></span>${escapeHtml(t.role)} (${total}₽)</div>`;
-    });
-    html += `<div class="legend-item"><span class="legend-color" style="background:var(--note-amber)"></span>Заметка</div>`;
-    legendEl.innerHTML = html;
-  }
-
-  function escapeHtml(str) {
-    return String(str || '').replace(/[&<>"']/g, s => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[s]));
-  }
-
-  // Отрисовка обоих календарей
-  function renderAll() {
-    renderLegend();
-
-    const scheduleGrid = document.getElementById('scheduleGrid');
-    const moneyGrid = document.getElementById('moneyGrid');
-    scheduleGrid.innerHTML = '';
-    moneyGrid.innerHTML = '';
-
-    const todayKey = formatDateKey(today);
-    const visibleDays = getVisibleDays();
-
-    const periodLabel = document.getElementById('periodLabel');
-    if (viewMode === 'month') {
-      periodLabel.textContent = `${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
-    } else {
-      const startW = visibleDays[0].date;
-      const endW = visibleDays[6].date;
-      const startStr = `${startW.getDate()} ${MONTHS_RU[startW.getMonth()].slice(0,3).toLowerCase()}`;
-      const endStr = `${endW.getDate()} ${MONTHS_RU[endW.getMonth()].slice(0,3).toLowerCase()}`;
-      periodLabel.textContent = `${startStr} – ${endStr}`;
-    }
-
-    visibleDays.forEach(({ date, isCurrentMonth }) => {
-      const key = formatDateKey(date);
-      const isToday = key === todayKey;
-      const isFuture = key > todayKey;
-      const entry = calendarData[key];
-
-      // --- 1. Ячейка для верхнего календаря (График + Заметки) ---
-      const cell1 = document.createElement('div');
-      cell1.className = `day-cell ${!isCurrentMonth && viewMode === 'month' ? 'other-month' : ''} ${isToday ? 'is-today' : ''}`;
-      cell1.onclick = () => openShiftModal(key, date);
-
-      let contentHtml1 = '';
-      if (entry && entry.status === 'off') {
-        contentHtml1 += `
-          <div class="shift-pill" style="background: rgba(60, 42, 86, 0.55); color: #cbb8e3; border-left-color: #8467ad;">
-            <span>Вых</span>
-            <span class="shift-time">0₽</span>
-          </div>`;
-      } else if (entry && entry.status === 'work') {
-        const col = entry.color || '#9d4edd';
-        const bg = hexToRgba(col, 0.38);
-        const subText = entry.timeLabel ? entry.timeLabel : `${entry.hours}ч`;
-        contentHtml1 += `
-          <div class="shift-pill" style="background: ${bg}; color: #f3e8ff; border-left-color: ${col};">
-            <span>${escapeHtml(entry.role)}</span>
-            <span class="shift-time">${escapeHtml(subText)}</span>
-          </div>`;
-      }
-
-      if (entry && entry.note) {
-        contentHtml1 += `<div class="day-note-badge" title="${escapeHtml(entry.note)}">${escapeHtml(entry.note)}</div>`;
-      }
-
-      if (!contentHtml1) {
-        contentHtml1 = `<div class="empty-hint">+</div>`;
-      }
-
-      cell1.innerHTML = `
-        <div class="day-top">
-          <div class="day-number">${date.getDate()}</div>
-          ${isToday ? '<span class="today-dot" title="Сегодня"></span>' : ''}
-        </div>
-        <div style="display:flex; flex-direction:column; gap:2px; width:100%; margin-top:auto;">
-          ${contentHtml1}
-        </div>
-      `;
-      scheduleGrid.appendChild(cell1);
-
-      // --- 2. Ячейка для нижнего календаря (Деньги) ---
-      const muteFuture = (earningsFilter === 'upToToday' && isFuture);
-      const cell2 = document.createElement('div');
-      cell2.className = `day-cell ${!isCurrentMonth && viewMode === 'month' ? 'other-month' : ''} ${isToday ? 'is-today' : ''} ${muteFuture ? 'future-muted' : ''}`;
-      cell2.onclick = () => openMoneyModal(key, date);
-
-      const totalDayMoney = getDayEarnings(key);
-      let sourceNote = '';
-      if (entry) {
-        if (muteFuture && totalDayMoney > 0) {
-          sourceNote = 'план';
-        } else if (entry.addedPay && entry.addedPay > 0) {
-          sourceNote = `<span class="bonus">+${entry.addedPay}₽</span>`;
-        } else if (entry.status === 'work') {
-          sourceNote = escapeHtml(entry.role);
-        } else if (entry.status === 'off') {
-          sourceNote = 'Вых';
-        }
-      }
-
-      cell2.innerHTML = `
-        <div class="day-top">
-          <div class="day-number">${date.getDate()}</div>
-          ${isToday ? '<span class="today-dot" title="Сегодня"></span>' : ''}
-        </div>
-        <div class="money-display">
-          <div class="money-amount ${totalDayMoney === 0 ? 'zero' : ''}">
-            ${formatCurrency(totalDayMoney)}
-          </div>
-          <div class="money-source-tag">${sourceNote || '—'}</div>
-        </div>
-      `;
-      moneyGrid.appendChild(cell2);
-    });
-
-    updateSummaryTotals();
-  }
-
-  function updateSummaryTotals() {
-    const todayKey = formatDateKey(today);
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    let monthSum = 0;
-    let monthShifts = 0;
-
-    for (let d = 1; d <= daysInMonth; d++) {
-      const key = formatDateKey(new Date(year, month, d));
-      if (earningsFilter === 'upToToday' && key > todayKey) continue;
-
-      monthSum += getDayEarnings(key);
-      const entry = calendarData[key];
-      if (entry && entry.status === 'work') {
-        monthShifts++;
-      }
-    }
-
-    const startW = getStartOfWeek(currentDate);
-    let weekSum = 0;
-    let weekShifts = 0;
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(startW);
-      d.setDate(startW.getDate() + i);
-      const key = formatDateKey(d);
-      if (earningsFilter === 'upToToday' && key > todayKey) continue;
-
-      weekSum += getDayEarnings(key);
-      const entry = calendarData[key];
-      if (entry && entry.status === 'work') {
-        weekShifts++;
-      }
-    }
-
-    const monthName = MONTHS_RU[month].toLowerCase();
-    if (earningsFilter === 'upToToday') {
-      document.getElementById('filterStatusHint').textContent = 'Только заработанное по сегодня';
-      document.getElementById('monthSummaryLabel').textContent = `Заработано за ${monthName} (по сегодня)`;
-      document.getElementById('monthShiftsCount').textContent = `Отработано смен: ${monthShifts}`;
-      document.getElementById('weekSummaryLabel').textContent = `Заработано за неделю (по сегодня)`;
-      document.getElementById('weekShiftsCount').textContent = `Отработано на неделе: ${weekShifts}`;
-    } else {
-      document.getElementById('filterStatusHint').textContent = 'С учётом всех будущих смен';
-      document.getElementById('monthSummaryLabel').textContent = `План за весь ${monthName}`;
-      document.getElementById('monthShiftsCount').textContent = `Всего смен по графику: ${monthShifts}`;
-      document.getElementById('weekSummaryLabel').textContent = `План за всю неделю`;
-      document.getElementById('weekShiftsCount').textContent = `Всего смен на неделе: ${weekShifts}`;
-    }
-
-    document.getElementById('monthTotalValue').textContent = Number(monthSum).toLocaleString('ru-RU') + ' ₽';
-    document.getElementById('weekTotalValue').textContent = Number(weekSum).toLocaleString('ru-RU') + ' ₽';
-  }
-
-  // --- Модальное окно ДНЯ (Выбор смены, шаблоны, правка смены, заметка) ---
-  function openShiftModal(dateKey, dateObj) {
-    activeDateKey = dateKey;
-    const dateFormatted = dateObj.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' });
-    document.getElementById('shiftModalTitle').textContent = `День: ${dateFormatted}`;
-
-    const entry = calendarData[dateKey] || {};
-    document.getElementById('dayNoteInput').value = entry.note || '';
-
-    // Если на этот день уже поставлена рабочая смена — показываем блок редактирования этой смены
-    const editBlock = document.getElementById('editCurrentShiftBlock');
-    if (entry.status === 'work') {
-      editBlock.style.display = 'flex';
-      document.getElementById('editRoleInput').value = entry.role || '';
-      document.getElementById('editTimeLabelInput').value = entry.timeLabel || '';
-      document.getElementById('editHoursInput').value = entry.hours !== undefined ? entry.hours : 8;
-      document.getElementById('editRateInput').value = entry.hourlyRate !== undefined ? entry.hourlyRate : 0;
-      updateEditShiftPreview();
-    } else {
-      editBlock.style.display = 'none';
-    }
-
-    // Скрываем форму создания нового шаблона при открытии
-    document.getElementById('newTemplateForm').style.display = 'none';
-    document.getElementById('btnToggleNewTemplate').textContent = '+ Создать новый шаблон смены';
-
-    renderTemplatesList();
-    renderColorPicker();
-    updateNewTemplateCalcPreview();
-
-    document.getElementById('shiftModal').classList.add('active');
-  }
-
-  function closeShiftModal() {
-    document.getElementById('shiftModal').classList.remove('active');
-  }
-
-  // Отрисовка списка доступных шаблонов (изначально только Выходной + созданные пользователем)
-  function renderTemplatesList() {
-    const container = document.getElementById('templatesListContainer');
-    let html = `
-      <div class="template-row">
-        <button class="option-btn" onclick="applyOffDay()">
-          <div class="option-info">
-            <span class="option-title">
-              <span class="legend-color" style="background:#8467ad; width:10px; height:10px;"></span>
-              Выходной
-            </span>
-            <span class="option-sub">День отдыха</span>
-          </div>
-          <span class="option-price">0 ₽</span>
-        </button>
-      </div>
-    `;
-
-    customTemplates.forEach((tpl) => {
-      const sum = Math.round(tpl.hours * tpl.hourlyRate);
-      const timeDetail = tpl.timeLabel ? `${tpl.timeLabel} (${tpl.hours} ч.)` : `${tpl.hours} ч.`;
-      html += `
-        <div class="template-row">
-          <button class="option-btn" onclick="applyTemplateToDay('${tpl.id}')">
-            <div class="option-info">
-              <span class="option-title">
-                <span class="legend-color" style="background:${tpl.color}; width:10px; height:10px;"></span>
-                ${escapeHtml(tpl.role)}
-              </span>
-              <span class="option-sub">${escapeHtml(timeDetail)} • ${tpl.hourlyRate} ₽/ч</span>
-            </div>
-            <span class="option-price">${sum.toLocaleString('ru-RU')} ₽</span>
-          </button>
-          <button class="btn-del-template" title="Удалить шаблон из списка" onclick="deleteTemplate('${tpl.id}')">&times;</button>
-        </div>
-      `;
-    });
-
-    container.innerHTML = html;
-  }
-
-  function renderColorPicker() {
-    const picker = document.getElementById('tplColorPicker');
-    picker.innerHTML = '';
-    PALETTE_COLORS.forEach(color => {
-      const swatch = document.createElement('div');
-      swatch.className = `color-swatch ${color === selectedTemplateColor ? 'selected' : ''}`;
-      swatch.style.background = color;
-      swatch.onclick = () => {
-        selectedTemplateColor = color;
-        renderColorPicker();
-      };
-      picker.appendChild(swatch);
-    });
-  }
-
-  function toggleNewTemplateForm() {
-    const form = document.getElementById('newTemplateForm');
-    const btn = document.getElementById('btnToggleNewTemplate');
-    if (form.style.display === 'none') {
-      form.style.display = 'flex';
-      btn.textContent = 'Скрыть конструктор шаблона';
-      document.getElementById('tplRoleInput').focus();
-    } else {
-      form.style.display = 'none';
-      btn.textContent = '+ Создать новый шаблон смены';
-    }
-  }
-
-  // Автоматический подсчёт часов при выборе времени "Начало" и "Конец"
-  function recalcHoursFromTimeRange() {
-    const startVal = document.getElementById('tplStartInput').value;
-    const endVal = document.getElementById('tplEndInput').value;
-    if (startVal && endVal) {
-      const [sh, sm] = startVal.split(':').map(Number);
-      const [eh, em] = endVal.split(':').map(Number);
-      let diffMinutes = (eh * 60 + em) - (sh * 60 + sm);
-      if (diffMinutes <= 0) {
-        diffMinutes += 24 * 60; // Смена с переходом через полночь
-      }
-      const hours = Math.round((diffMinutes / 60) * 100) / 100;
-      document.getElementById('tplHoursInput').value = hours;
-      updateNewTemplateCalcPreview();
-    }
-  }
-
-  document.getElementById('tplStartInput').addEventListener('change', recalcHoursFromTimeRange);
-  document.getElementById('tplEndInput').addEventListener('change', recalcHoursFromTimeRange);
-
-  function updateNewTemplateCalcPreview() {
-    const hrs = parseFloat(document.getElementById('tplHoursInput').value) || 0;
-    const rate = parseFloat(document.getElementById('tplRateInput').value) || 0;
-    const total = Math.round(hrs * rate);
-    document.getElementById('tplCalcDetails').textContent = `${hrs} ч. × ${rate.toLocaleString('ru-RU')} ₽/ч`;
-    document.getElementById('tplCalcTotal').textContent = `${total.toLocaleString('ru-RU')} ₽`;
-  }
-
-  document.getElementById('tplHoursInput').addEventListener('input', updateNewTemplateCalcPreview);
-  document.getElementById('tplRateInput').addEventListener('input', updateNewTemplateCalcPreview);
-
-  // Создание нового шаблона и применение его на выбранный день
-  function createAndApplyTemplate() {
-    const role = document.getElementById('tplRoleInput').value.trim() || 'Смена';
-    const startVal = document.getElementById('tplStartInput').value;
-    const endVal = document.getElementById('tplEndInput').value;
-    const hours = parseFloat(document.getElementById('tplHoursInput').value) || 0;
-    const hourlyRate = parseFloat(document.getElementById('tplRateInput').value) || 0;
-    const timeLabel = (startVal && endVal) ? `${startVal}–${endVal}` : '';
-
-    const newTpl = {
-      id: 'tpl_' + Date.now(),
-      role,
-      timeLabel,
-      hours,
-      hourlyRate,
-      color: selectedTemplateColor
-    };
-
-    customTemplates.push(newTpl);
-    saveTemplates();
-
-    // Очищаем поля конструктора
-    document.getElementById('tplRoleInput').value = '';
-    document.getElementById('tplStartInput').value = '';
-    document.getElementById('tplEndInput').value = '';
-
-    applyTemplateToDay(newTpl.id);
-  }
-
-  function deleteTemplate(id) {
-    customTemplates = customTemplates.filter(t => t.id !== id);
-    saveTemplates();
-    renderTemplatesList();
-    renderAll();
-  }
-
-  // Назначение "Выходного" на выбранный день
-  function applyOffDay() {
-    if (!activeDateKey) return;
-    const noteVal = document.getElementById('dayNoteInput').value.trim();
-    const prev = calendarData[activeDateKey] || {};
-
-    calendarData[activeDateKey] = {
-      ...prev,
-      status: 'off',
-      role: 'Выходной',
-      timeLabel: 'Отдых',
-      hours: 0,
-      hourlyRate: 0,
-      basePay: 0,
-      manualPay: null,
-      note: noteVal
-    };
-
-    saveCalendarData();
-    renderAll();
-    closeShiftModal();
-  }
-
-  // Назначение шаблона из списка на выбранный день
-  function applyTemplateToDay(tplId) {
-    if (!activeDateKey) return;
-    const tpl = customTemplates.find(t => t.id === tplId);
-    if (!tpl) return;
-
-    const noteVal = document.getElementById('dayNoteInput').value.trim();
-    const prev = calendarData[activeDateKey] || {};
-    const basePay = Math.round(tpl.hours * tpl.hourlyRate);
-
-    calendarData[activeDateKey] = {
-      ...prev,
-      status: 'work',
-      templateId: tpl.id,
-      role: tpl.role,
-      timeLabel: tpl.timeLabel,
-      hours: tpl.hours,
-      hourlyRate: tpl.hourlyRate,
-      color: tpl.color,
-      basePay: basePay,
-      manualPay: null,
-      note: noteVal
-    };
-
-    saveCalendarData();
-    renderAll();
-    closeShiftModal();
-  }
-
-  // Правка уже поставленной на день смены
-  function updateEditShiftPreview() {
-    const hrs = parseFloat(document.getElementById('editHoursInput').value) || 0;
-    const rate = parseFloat(document.getElementById('editRateInput').value) || 0;
-    const sum = Math.round(hrs * rate);
-    document.getElementById('editShiftPreviewSum').textContent = `${sum.toLocaleString('ru-RU')} ₽`;
-  }
-
-  document.getElementById('editHoursInput').addEventListener('input', updateEditShiftPreview);
-  document.getElementById('editRateInput').addEventListener('input', updateEditShiftPreview);
-
-  function saveEditedDayShift() {
-    if (!activeDateKey) return;
-    const prev = calendarData[activeDateKey] || {};
-    const role = document.getElementById('editRoleInput').value.trim() || 'Смена';
-    const timeLabel = document.getElementById('editTimeLabelInput').value.trim();
-    const hours = parseFloat(document.getElementById('editHoursInput').value) || 0;
-    const hourlyRate = parseFloat(document.getElementById('editRateInput').value) || 0;
-    const noteVal = document.getElementById('dayNoteInput').value.trim();
-    const basePay = Math.round(hours * hourlyRate);
-
-    calendarData[activeDateKey] = {
-      ...prev,
-      status: 'work',
-      role,
-      timeLabel,
-      hours,
-      hourlyRate,
-      basePay,
-      manualPay: null,
-      note: noteVal
-    };
-
-    saveCalendarData();
-    renderAll();
-    closeShiftModal();
-  }
-
-  // Сохранение только заметки на день
-  function saveOnlyNote() {
-    if (!activeDateKey) return;
-    const noteVal = document.getElementById('dayNoteInput').value.trim();
-    const prev = calendarData[activeDateKey] || {};
-
-    if (!noteVal && !prev.status && !prev.addedPay && !prev.manualPay) {
-      delete calendarData[activeDateKey];
-    } else {
-      calendarData[activeDateKey] = {
-        ...prev,
-        note: noteVal
-      };
-    }
-
-    saveCalendarData();
-    renderAll();
-    closeShiftModal();
-  }
-
-  function clearShiftDay() {
-    if (!activeDateKey) return;
-    delete calendarData[activeDateKey];
-    saveCalendarData();
-    renderAll();
-    closeShiftModal();
-  }
-
-  // --- Модальное окно ДЕНЕГ (Календарь 2) ---
-  function openMoneyModal(dateKey, dateObj) {
-    activeDateKey = dateKey;
-    const dateFormatted = dateObj.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' });
-    document.getElementById('moneyModalTitle').textContent = `Касса: ${dateFormatted}`;
-
-    document.getElementById('addMoneyInput').value = '';
-    document.getElementById('setMoneyInput').value = '';
-
-    refreshMoneyModalView();
-    document.getElementById('moneyModal').classList.add('active');
-  }
-
-  function refreshMoneyModalView() {
-    const entry = calendarData[activeDateKey];
-    const total = getDayEarnings(activeDateKey);
-    document.getElementById('moneyModalCurrentVal').textContent = Number(total).toLocaleString('ru-RU') + ' ₽';
-
-    let infoText = 'Смена не выбрана';
-    if (entry && entry.status === 'work') {
-      infoText = `${entry.role} (${entry.hours}ч × ${entry.hourlyRate}₽): ${formatCurrency(entry.basePay || 0)}`;
-      if (entry.addedPay) {
-        infoText += ` | Сверху: +${formatCurrency(entry.addedPay)}`;
-      }
-    } else if (entry && entry.status === 'off') {
-      infoText = 'Выходной (0₽)';
-      if (entry.addedPay) {
-        infoText += ` | Доп. доход: +${formatCurrency(entry.addedPay)}`;
-      }
-    }
-    document.getElementById('moneyModalShiftInfo').textContent = infoText;
-  }
-
-  function closeMoneyModal() {
-    document.getElementById('moneyModal').classList.remove('active');
-  }
-
-  function addMoneyToDay() {
-    const val = parseFloat(document.getElementById('addMoneyInput').value);
-    if (isNaN(val) || val === 0) return;
-    applyAddedMoney(val);
-    document.getElementById('addMoneyInput').value = '';
-  }
-
-  function quickAddMoney(amount) {
-    applyAddedMoney(amount);
-  }
-
-  function applyAddedMoney(amount) {
-    if (!activeDateKey) return;
-    const prev = calendarData[activeDateKey] || { basePay: 0, addedPay: 0 };
-    prev.addedPay = Number(prev.addedPay || 0) + amount;
-    calendarData[activeDateKey] = prev;
-
-    saveCalendarData();
-    refreshMoneyModalView();
-    renderAll();
-  }
-
-  function setExactMoneyForDay() {
-    if (!activeDateKey) return;
-    const val = parseFloat(document.getElementById('setMoneyInput').value);
-    if (isNaN(val) || val < 0) return;
-
-    const prev = calendarData[activeDateKey] || {};
-    prev.manualPay = val;
-    prev.addedPay = 0;
-    calendarData[activeDateKey] = prev;
-
-    document.getElementById('setMoneyInput').value = '';
-    saveCalendarData();
-    refreshMoneyModalView();
-    renderAll();
-  }
-
-  function resetMoneyToShiftBase() {
-    if (!activeDateKey) return;
-    const prev = calendarData[activeDateKey];
-    if (prev) {
-      prev.manualPay = null;
-      prev.addedPay = 0;
-      saveCalendarData();
-    }
-    refreshMoneyModalView();
-    renderAll();
-  }
-
-  // Переключатели вида Месяц / Неделя
-  document.getElementById('btnMonthView').addEventListener('click', () => {
-    viewMode = 'month';
-    document.getElementById('btnMonthView').classList.add('active');
-    document.getElementById('btnWeekView').classList.remove('active');
-    renderAll();
-  });
-
-  document.getElementById('btnWeekView').addEventListener('click', () => {
-    viewMode = 'week';
-    document.getElementById('btnWeekView').classList.add('active');
-    document.getElementById('btnMonthView').classList.remove('active');
-    renderAll();
-  });
-
-  // Переключатели фильтра заработка (По сегодня / Весь план)
-  document.getElementById('btnFilterUpToToday').addEventListener('click', () => {
-    earningsFilter = 'upToToday';
-    document.getElementById('btnFilterUpToToday').classList.add('active');
-    document.getElementById('btnFilterAllMonth').classList.remove('active');
-    renderAll();
-  });
-
-  document.getElementById('btnFilterAllMonth').addEventListener('click', () => {
-    earningsFilter = 'all';
-    document.getElementById('btnFilterAllMonth').classList.add('active');
-    document.getElementById('btnFilterUpToToday').classList.remove('active');
-    renderAll();
-  });
-
-  document.getElementById('btnPrev').addEventListener('click', () => {
-    if (viewMode === 'month') {
-      currentDate.setMonth(currentDate.getMonth() - 1);
-    } else {
-      currentDate.setDate(currentDate.getDate() - 7);
-    }
-    renderAll();
-  });
-
-  document.getElementById('btnNext').addEventListener('click', () => {
-    if (viewMode === 'month') {
-      currentDate.setMonth(currentDate.getMonth() + 1);
-    } else {
-      currentDate.setDate(currentDate.getDate() + 7);
-    }
-    renderAll();
-  });
-
-  document.getElementById('btnToday').addEventListener('click', () => {
-    currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    renderAll();
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target.id === 'shiftModal') closeShiftModal();
-    if (e.target.id === 'moneyModal') closeMoneyModal();
-  });
-
-  renderAll();
-</script>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="footer-logo">TOFFA</div>
+    <p class="footer-quote">Открой дверь в мир, где возможно всё. Шагни за грань обыденного.</p>
+    <a href="#top" class="scroll-top">↑ Прокрутка к началу страницы</a>
+  </footer>
 
 </body>
 </html>
